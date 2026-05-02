@@ -179,7 +179,7 @@ class Game:
         except Exception:
             pass
         self.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-        pygame.display.set_caption("Flappy Angry Bird")
+        pygame.display.set_caption("Flappy Angry Bird - By @yuvrajchopra")
         self.clock = pygame.time.Clock()
         self.font = pygame.font.Font(None, 36)
         self.tfont = pygame.font.Font(None, 52)
@@ -279,6 +279,9 @@ class Game:
             if self.best > 0:
                 bt = self.smfont.render(f"Best: {self.best}", True, SCORE_GOLD)
                 self.screen.blit(bt, bt.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 60)))
+            brand = self.smfont.render("BUILT BY YUVRAJ CHOPRA", True, (255, 255, 255))
+            brand.set_alpha(100)
+            self.screen.blit(brand, brand.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT - 30)))
         if self.game_over:
             ov = pygame.Surface((SCREEN_WIDTH, SCREEN_HEIGHT), pygame.SRCALPHA)
             ov.fill((0, 0, 0, 80))
