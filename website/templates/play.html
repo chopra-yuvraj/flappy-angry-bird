@@ -65,6 +65,9 @@
             flex-direction: column;
             align-items: center;
             gap: 14px;
+            margin-top: 60px; /* Account for fixed topbar */
+            width: 100%;
+            padding: 0 16px;
             animation: slideIn 0.5s ease-out;
         }
         @keyframes slideIn {
@@ -76,6 +79,8 @@
             position: relative;
             border-radius: 14px;
             overflow: hidden;
+            width: 100%;
+            max-width: 400px;
             box-shadow:
                 0 0 0 3px var(--gold),
                 0 0 50px var(--gold-glow),
@@ -85,6 +90,11 @@
         canvas {
             display: block;
             background: var(--sky);
+            width: 100%;
+            height: auto;
+            aspect-ratio: 400 / 600;
+            max-height: calc(100vh - 120px);
+            object-fit: contain;
             cursor: pointer;
         }
 
@@ -115,12 +125,15 @@
 
         /* ── Responsive ── */
         @media (max-height: 720px) {
-            canvas { width: 320px; height: 480px; }
+            .game-area { margin-top: 50px; gap: 8px; }
+            canvas { max-height: calc(100vh - 100px); }
         }
         @media (max-width: 440px) {
-            canvas { width: 100vw; height: calc(100vw * 1.5); max-height: 75vh; }
-            .canvas-wrap { border-radius: 0; box-shadow: none; border: none; }
+            .game-area { padding: 0; margin-top: 52px; gap: 0; }
+            .canvas-wrap { border-radius: 0; box-shadow: none; border: none; max-width: 100%; }
+            canvas { max-height: calc(100vh - 52px); }
             .controls { display: none; }
+            .branding { display: none; }
             .topbar { padding: 0 10px; }
         }
     </style>

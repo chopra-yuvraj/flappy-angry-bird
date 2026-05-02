@@ -341,26 +341,35 @@
 
   function drawStartScreen() {
     const t = performance.now();
-    const ty = H / 2 - 60 + Math.sin(t / 500) * 6;
+    const ty = H / 2 - 100 + Math.sin(t / 500) * 6;
 
-    ctx.font = "900 44px 'Outfit', Arial, sans-serif";
     ctx.textAlign = "center";
+    
+    // Split title into two lines to fit width
+    ctx.font = "900 42px 'Outfit', Arial, sans-serif";
+    
+    // Shadow
     ctx.fillStyle = "rgba(120,0,0,0.3)";
-    ctx.fillText("FLAPPY ANGRY BIRD", W / 2 + 2, ty + 2);
+    ctx.fillText("FLAPPY", W / 2 + 2, ty + 2);
+    ctx.fillText("ANGRY BIRD", W / 2 + 2, ty + 46 + 2);
+    
+    // Text
     ctx.fillStyle = COL.birdRed;
-    ctx.fillText("FLAPPY ANGRY BIRD", W / 2, ty);
+    ctx.fillText("FLAPPY", W / 2, ty);
+    ctx.fillText("ANGRY BIRD", W / 2, ty + 46);
 
+    // Pulse hint
     const pulse = 0.5 + 0.5 * Math.sin(t / 300);
     ctx.globalAlpha = 0.5 + pulse * 0.5;
-    ctx.font = "600 28px 'Outfit', Arial, sans-serif";
+    ctx.font = "600 24px 'Outfit', Arial, sans-serif";
     ctx.fillStyle = COL.white;
-    ctx.fillText("Tap or Press SPACE", W / 2, H / 2 + 25);
+    ctx.fillText("Tap or Press SPACE", W / 2, H / 2 + 80);
     ctx.globalAlpha = 1;
 
     if (bestScore > 0) {
       ctx.font = "500 22px 'Outfit', Arial, sans-serif";
       ctx.fillStyle = COL.gold;
-      ctx.fillText("Best: " + bestScore, W / 2, H / 2 + 65);
+      ctx.fillText("Best: " + bestScore, W / 2, H / 2 + 120);
     }
   }
 
