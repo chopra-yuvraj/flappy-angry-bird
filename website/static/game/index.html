@@ -265,79 +265,68 @@ config = {
     <link rel="icon" type="image/png" href="favicon.png" sizes="16x16">
 
     <style>
-        #status {
-            display: inline-block;
-            vertical-align: top;
-            margin-top: 20px;
-            margin-left: 30px;
-            font-weight: bold;
-            color: rgb(120, 120, 120);
+        /* === OVERRIDES FOR IFRAME EMBEDDING === */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #87CEEB;
+            font-family: Arial, sans-serif;
         }
 
+        /* Download / status bar — small, centered, overlaid */
+        #transfer {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 20;
+            text-align: center;
+            pointer-events: none;
+        }
+        #status {
+            display: block;
+            font-weight: bold;
+            font-size: 14px;
+            color: #1A2332;
+            margin-bottom: 6px;
+        }
         #progress {
-            height: 20px;
-            width: 300px;
+            height: 10px;
+            width: 200px;
+            border-radius: 5px;
         }
 
         div.emscripten { text-align: center; }
-        div.emscripten_border { border: 1px solid black; }
-        div.thick_border { border: 4px solid black; }
 
-        /* the canvas *must not* have any border or padding, or mouse coords will be wrong */
-        /* average size of droid screen 470dp x 320dp  */
+        /* Canvas — fill the iframe exactly, no scrollbars */
         canvas.emscripten {
-            border: 0px none;
+            border: 0;
             background-color: transparent;
             width: 100%;
             height: 100%;
             z-index: 5;
-
             padding: 0;
-            margin: 0 auto;
-
+            margin: 0;
             position: absolute;
             top: 0;
-            bottom: 0;
             left: 0;
             right: 0;
+            bottom: 0;
         }
 
-        body {
-            font-family: arial;
-            margin: 0;
-            padding: none;
-            background-color:powderblue;
-        }
-
-        .topright{
-           position:absolute;
-           top:0px;
-           right:0px;
-        }
-
-        .bottomright {
-            position:absolute;
-            top: 40%;
-            right: 0px;
-        }
-
-        .center {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .trinfo{
-           position:relative;
-           right:0px;
-           border: 1px solid black;
-        }
-
-        .framed{
-           position:relative;
-           top:150px;
-           right:10px;
-           border: 1px solid black;
+        /* Hide all debug / dev panels */
+        #crt, #pyconsole, #dlg, #box, #system,
+        #html, .bottomright, .topright, .trinfo, .framed {
+            display: none !important;
+            visibility: hidden !important;
+            width: 0 !important;
+            height: 0 !important;
+            overflow: hidden !important;
+            position: absolute !important;
+            pointer-events: none !important;
         }
     </style>
 
