@@ -1,8 +1,14 @@
 services:
   - type: web
-    name: flappy-bird-app
+    name: flappy-angry-bird
     runtime: python
-    buildCommand: pip install -r requirements.txt && mkdir -p web_game_src && cp game/*.py web_game_src/ && cp game/web_main.py web_game_src/main.py && python -m pygbag --build web_game_src && mkdir -p website/static/game && cp -r web_game_src/build/web/* website/static/game/
+    buildCommand: >-
+      pip install -r requirements.txt &&
+      mkdir -p web_game_src &&
+      cp game/web_main.py web_game_src/main.py &&
+      python -m pygbag --build web_game_src &&
+      mkdir -p website/static/game &&
+      cp -r web_game_src/build/web/* website/static/game/
     startCommand: gunicorn website.app:app
     envVars:
       - key: PYTHON_VERSION
