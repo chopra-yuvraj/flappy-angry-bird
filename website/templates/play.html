@@ -3,26 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Playing Flappy Angry Bird | Yuvraj Chopra</title>
-    <meta name="description" content="Play Flappy Angry Bird in your browser — built with Python, Pygame, and WebAssembly.">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>Play Flappy Angry Bird | Yuvraj Chopra</title>
+    <meta name="description" content="Play Flappy Angry Bird directly in your browser. Built with JavaScript Canvas by Yuvraj Chopra.">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --dark: #141B24;
-            --dark-surface: #1C2634;
-            --gold: #F4CE5E;
-            --gold-dim: rgba(244,206,94,0.25);
-            --sky: #87CEEB;
-            --white: #FFFFFF;
-            --white-dim: rgba(255,255,255,0.6);
+            --dark: #0f1520;
+            --dark-card: #1a2235;
+            --gold: #f4ce5e;
+            --gold-glow: rgba(244,206,94,0.18);
+            --sky: #50b4dc;
+            --white: #ffffff;
+            --white-dim: rgba(255,255,255,0.55);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-
-        html, body {
-            height: 100%;
-            overflow: hidden;
-        }
+        html, body { height: 100%; overflow: hidden; }
 
         body {
             font-family: 'Outfit', sans-serif;
@@ -34,249 +30,122 @@
             color: var(--white);
         }
 
-        /* ─── Top bar ─── */
+        /* ── Top bar ── */
         .topbar {
             position: fixed;
             top: 0; left: 0; right: 0;
-            height: 56px;
+            height: 52px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 20px;
-            background: rgba(20,27,36,0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255,255,255,0.06);
+            padding: 0 18px;
+            background: rgba(15,21,32,0.88);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
             z-index: 100;
         }
-
         .back-btn {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.1);
+            display: flex; align-items: center; gap: 6px;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.08);
             color: var(--white-dim);
             font-family: 'Outfit', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 600;
-            padding: 8px 20px;
-            border-radius: 100px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.25s;
+            font-size: 0.88rem; font-weight: 600;
+            padding: 7px 18px; border-radius: 100px;
+            cursor: pointer; text-decoration: none;
+            transition: all 0.2s;
         }
-        .back-btn:hover {
-            background: rgba(255,255,255,0.14);
-            color: var(--white);
-            transform: translateX(-2px);
-        }
+        .back-btn:hover { background: rgba(255,255,255,0.12); color: var(--white); }
+        .topbar-title { font-weight: 800; font-size: 0.95rem; color: var(--white-dim); letter-spacing: 0.5px; }
 
-        .topbar-title {
-            font-weight: 800;
-            font-size: 1rem;
-            letter-spacing: 0.5px;
-            color: var(--white-dim);
-        }
-
-        .fullscreen-btn {
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: var(--white-dim);
-            font-family: 'Outfit', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 600;
-            padding: 8px 16px;
-            border-radius: 100px;
-            cursor: pointer;
-            transition: all 0.25s;
-        }
-        .fullscreen-btn:hover {
-            background: rgba(255,255,255,0.14);
-            color: var(--white);
-        }
-
-        /* ─── Game container ─── */
-        .game-container {
+        /* ── Game area ── */
+        .game-area {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 16px;
-            animation: fadeSlideIn 0.6s ease-out;
+            gap: 14px;
+            animation: slideIn 0.5s ease-out;
         }
-
-        @keyframes fadeSlideIn {
-            from { opacity: 0; transform: translateY(20px); }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(18px); }
             to   { opacity: 1; transform: translateY(0); }
         }
 
-        .game-frame {
+        .canvas-wrap {
             position: relative;
-            width: 320px;
-            height: 540px;
-            border-radius: 16px;
+            border-radius: 14px;
             overflow: hidden;
-            background: #000;
             box-shadow:
                 0 0 0 3px var(--gold),
-                0 0 40px rgba(244,206,94,0.15),
-                0 30px 60px rgba(0,0,0,0.5);
+                0 0 50px var(--gold-glow),
+                0 28px 56px rgba(0,0,0,0.5);
         }
 
-        /* Ambient glow behind frame */
-        .game-frame::before {
-            content: '';
-            position: absolute;
-            inset: -40px;
-            background: radial-gradient(circle, rgba(78,192,202,0.08), transparent 70%);
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
+        canvas {
             display: block;
-            background-color: var(--sky);
+            background: var(--sky);
+            cursor: pointer;
         }
 
-        /* Loading overlay */
-        .loading-overlay {
-            position: absolute;
-            inset: 0;
-            background: var(--dark-surface);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            z-index: 5;
-            transition: opacity 0.5s, visibility 0.5s;
-        }
-        .loading-overlay.hidden {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
-
-        .spinner {
-            width: 40px; height: 40px;
-            border: 3px solid rgba(255,255,255,0.1);
-            border-top-color: var(--gold);
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-        }
-        @keyframes spin { to { transform: rotate(360deg); } }
-
-        .loading-text {
-            font-size: 0.95rem;
-            color: var(--white-dim);
-            letter-spacing: 0.5px;
-        }
-
-        /* ─── Controls hint bar ─── */
-        .controls-bar {
-            display: flex;
-            gap: 20px;
-            font-size: 0.78rem;
+        /* ── Controls hint ── */
+        .controls {
+            display: flex; gap: 18px;
+            font-size: 0.76rem;
             color: var(--white-dim);
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-        .controls-bar span {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .key-badge {
+        .controls span { display: flex; align-items: center; gap: 5px; }
+        .kbd {
             background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.14);
             border-radius: 5px;
-            padding: 3px 9px;
+            padding: 2px 8px;
             font-weight: 700;
             font-size: 0.72rem;
         }
 
-        /* ─── Footer branding ─── */
         .branding {
-            font-size: 0.8rem;
-            color: rgba(255,255,255,0.3);
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.25);
             letter-spacing: 1.5px;
             text-transform: uppercase;
         }
 
-        /* ─── Responsive ─── */
-        @media (max-height: 700px) {
-            .game-frame { width: 260px; height: 440px; }
+        /* ── Responsive ── */
+        @media (max-height: 720px) {
+            canvas { width: 320px; height: 480px; }
         }
-        @media (max-width: 380px) {
-            .game-frame { width: 280px; height: 470px; border-radius: 12px; }
-            .controls-bar { display: none; }
+        @media (max-width: 440px) {
+            canvas { width: 100vw; height: calc(100vw * 1.5); max-height: 75vh; }
+            .canvas-wrap { border-radius: 0; box-shadow: none; border: none; }
+            .controls { display: none; }
+            .topbar { padding: 0 10px; }
         }
     </style>
 </head>
 <body>
-    <!-- Top Bar -->
     <nav class="topbar">
         <a href="/" class="back-btn" id="btn-back">← Home</a>
         <span class="topbar-title">FLAPPY ANGRY BIRD</span>
-        <button class="fullscreen-btn" id="btn-fullscreen" title="Toggle fullscreen">⛶ Fullscreen</button>
+        <span></span>
     </nav>
 
-    <!-- Game -->
-    <div class="game-container">
-        <div class="game-frame" id="game-frame">
-            <div class="loading-overlay" id="loading-overlay">
-                <div class="spinner"></div>
-                <div class="loading-text">Loading game engine…</div>
-            </div>
-            <iframe
-                id="game-iframe"
-                src="/game/"
-                title="Flappy Angry Bird Game"
-                allowfullscreen
-                sandbox="allow-same-origin allow-scripts"
-            ></iframe>
+    <div class="game-area">
+        <div class="canvas-wrap">
+            <canvas id="game-canvas" width="400" height="600"></canvas>
         </div>
 
-        <div class="controls-bar" aria-label="Controls">
-            <span><span class="key-badge">SPACE</span> Flap</span>
-            <span><span class="key-badge">R</span> Restart</span>
-            <span><span class="key-badge">TAP</span> Mobile</span>
+        <div class="controls" aria-label="Game controls">
+            <span><span class="kbd">SPACE</span> Flap</span>
+            <span><span class="kbd">R</span> Restart</span>
+            <span><span class="kbd">TAP</span> Mobile</span>
         </div>
 
         <div class="branding">Built by Yuvraj Chopra</div>
     </div>
 
-    <script>
-        // Hide loading overlay once iframe loads
-        var iframe = document.getElementById('game-iframe');
-        var overlay = document.getElementById('loading-overlay');
-        iframe.addEventListener('load', function() {
-            setTimeout(function() {
-                overlay.classList.add('hidden');
-            }, 800);
-        });
-
-        // Fullscreen toggle
-        var fsBtn = document.getElementById('btn-fullscreen');
-        var frame = document.getElementById('game-frame');
-        fsBtn.addEventListener('click', function() {
-            if (!document.fullscreenElement) {
-                (frame.requestFullscreen || frame.webkitRequestFullscreen || frame.msRequestFullscreen).call(frame);
-            } else {
-                (document.exitFullscreen || document.webkitExitFullscreen || document.msExitFullscreen).call(document);
-            }
-        });
-
-        // Focus iframe for keyboard input
-        iframe.addEventListener('load', function() {
-            iframe.focus();
-        });
-        frame.addEventListener('click', function() {
-            iframe.focus();
-        });
-    </script>
+    <script src="/static/js/game.js"></script>
 </body>
 </html>

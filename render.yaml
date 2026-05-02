@@ -2,17 +2,7 @@ services:
   - type: web
     name: flappy-angry-bird
     runtime: python
-    buildCommand: >-
-      pip install -r requirements.txt &&
-      mkdir -p web_game_src &&
-      cp game/web_main.py web_game_src/main.py &&
-      python -m pygbag --build web_game_src &&
-      mkdir -p website/static/game &&
-      cp -r web_game_src/build/web/* website/static/game/ &&
-      sed -i 's/WIDTH=1024/WIDTH=288/' website/static/game/index.html &&
-      sed -i 's/HEIGHT=600/HEIGHT=512/' website/static/game/index.html &&
-      sed -i 's/background-color:powderblue/background-color:#87CEEB;overflow:hidden/' website/static/game/index.html &&
-      sed -i 's/padding: none/padding:0;overflow:hidden/' website/static/game/index.html
+    buildCommand: pip install -r requirements.txt
     startCommand: gunicorn website.app:app
     envVars:
       - key: PYTHON_VERSION
