@@ -1,41 +1,55 @@
 # Flappy Angry Bird - Premium Arcade Game
 [![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org/)
 [![Pygame](https://img.shields.io/badge/Pygame-CE-00D4AA?style=for-the-badge&logo=python&logoColor=white)](https://pygame.org/)
-[![WebAssembly](https://img.shields.io/badge/WebAssembly-Pygbag-654FF0?style=for-the-badge&logo=webassembly&logoColor=white)](https://pypi.org/project/pygbag/)
-[![Flask](https://img.shields.io/badge/Flask-Server-000000?style=for-the-badge&logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
+[![HTML5-Canvas](https://img.shields.io/badge/HTML5-Canvas_60FPS-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API)
+[![Web-Audio](https://img.shields.io/badge/Web_Audio-Synthesizer-9B51E0?style=for-the-badge&logo=soundcharts&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API)
+[![Vercel](https://img.shields.io/badge/Deploy-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
 ---
 
+## 🚀 Live Demo & Web Play
+Play Flappy Angry Bird directly in your browser with zero installations, 60 FPS Canvas rendering, and procedural 8-bit audio:
+- **Instant Vercel Deployment**: Push to GitHub and deploy straight to Vercel with zero configuration required!
+
+---
+
 ## Why Flappy Angry Bird?
-As a **B.Tech CSE student at VIT** and **B.S. Data Science student at IIT Madras**, I wanted to explore the intersection of classical game development and modern web deployment. 
-This project pushes the boundaries of how Python games can be experienced on the web, utilizing **Pygbag** to transpile **Pygame** into **WebAssembly** for a seamless, cross-platform arcade experience without plugins or downloads.
+As a **B.Tech CSE student at VIT** and **B.S. Data Science student at IIT Madras**, I wanted to explore the intersection of classical desktop game development and high-performance, modern web deployment.
+
+This project delivers dual runtime targets:
+1. **Desktop Native**: Powered by Python 3 and Pygame CE (`game/main.py` and Windows `.exe`).
+2. **Web Portal & Arcade Engine**: Built with pure HTML5 Canvas, Web Audio API, and CSS3 for zero-latency, cross-platform browser play on any device.
 
 ### Key Features
 - **Iconic Character Design** - Features a custom, programmatically drawn "Red Angry Bird" with dynamic rotation physics.
 - **Physics-Based Gameplay** - Realistic gravity, velocity, and collision detection systems for authentic arcade feel.
-- **Cross-Platform Web Play** - Runs directly in the browser at 60 FPS using WebAssembly technology.
-- **Responsive Controls** - Intelligent input handling supporting both Keyboard (Space) and Touch (Tap) for mobile devices.
-- **Dynamic Environment** - Moving clouds, parallax scrolling ground, and randomized pipe generation.
-- **Deployment Ready** - Fully configured with a Flask wrapper and Gunicorn for enterprise-grade web hosting.
+- **Cross-Platform Web Play** - Runs directly in the browser at 60 FPS on desktop, tablet, and mobile.
+- **Procedural 8-Bit Audio** - Real-time Web Audio API synthesizer for jump flaps, score chimes, crash shockwaves, and victory fanfares without external audio file latency.
+- **Responsive Controls** - Intelligent input handling supporting Keyboard (`SPACE`, `W`, `↑`), Pause (`P`), Mute (`M`), Restart (`R`), and Touch (`TAP`) for mobile devices.
+- **Dynamic Environment** - Moving clouds, parallax scrolling ground, and randomized progressive pipe generation.
+- **Deployment Ready** - Fully configured with `vercel.json` for edge static hosting and Flask (`website/app.py`) for Python server hosting.
 
 ---
 
 ### Game Interaction
 | Feature | Action | Experience |
 |---------|--------|------------|
-| **Start Game** | Press `SPACE` or Tap | The bird leaps into action, activating gravity and physics immediately |
-| **Flight Control** | Press `SPACE` or Tap | The bird flaps upwards with an angular rotation animation mimicking flight |
-| **System** | `R` Key or Click after death | Instantly resets the game state for rapid replayability |
-
-### Engineering Highlights
-- **Core Engine**: Built on **Python 3** and **Pygame Community Edition** for robust game loops and rendering.
-- **Web Porting**: Utilizes **Pygbag** to compile Python bytecode to WebAssembly (Wasm) for browser execution.
-- **Rendering**: Custom geometric drawing algorithms for the bird and environment (no static image assets used).
-- **Backend wrapper**: References a lightweight **Flask** server to serve the Wasm assets efficiently in production.
+| **Start Game** | Press `SPACE`, `W`, `↑` or Tap | The bird leaps into action, activating gravity and physics immediately |
+| **Flight Control** | Press `SPACE` or Tap Screen | The bird flaps upwards with an angular rotation animation mimicking flight |
+| **Pause / Resume** | Press `P` or `ESC` | Freezes the game session in place |
+| **Mute / Unmute** | Press `M` or click 🔊 | Toggles procedural sound effects |
+| **Quick Restart** | Press `R` or Tap after death | Instantly resets the game state for rapid replayability |
 
 ---
 
+### Engineering Highlights
+- **Core Native Engine**: Built on **Python 3** and **Pygame Community Edition** for robust game loops and rendering (`game/main.py`).
+- **Web Engine**: Pure **HTML5 Canvas 2D** with High-DPI Retina scaling and **Web Audio API** oscillator sound synthesis.
+- **Styling & UI**: Modern glassmorphism design system using pure CSS3 and Outfit typography.
+- **Vercel Edge Ready**: Static configuration with clean URL routing and HTTP caching headers.
+
+---
 ## Future Enhancements
 Ideas for the next version:
 - [ ] **Leaderboard System** - Global high scores using a lightweight cloud database
@@ -56,7 +70,6 @@ Special recognition to:
 - **My professors at VIT Vellore** for their encouragement in exploring diverse tech stacks.
 - **IIT Madras coursework** for emphasizing algorithmic efficiency.
 - **The Pygame Community** for maintaining the excellent library.
-- **Pygbag Developers** for enabling Python on the web.
 
 ---
 
