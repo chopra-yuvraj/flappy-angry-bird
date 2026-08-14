@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flappy Angry Bird | Official Web Portal — Yuvraj Chopra</title>
+    <meta name="description" content="Play Flappy Angry Bird directly in your web browser. A premium arcade game built with HTML5 Canvas, Web Audio API, and high-performance physics by Yuvraj Chopra.">
+    <meta name="keywords" content="Flappy Angry Bird, Flappy Bird, Arcade Game, HTML5 Game, Canvas Game, Yuvraj Chopra, Browser Game">
+    <meta name="author" content="Yuvraj Chopra">
+    
+    <!-- Open Graph / Social -->
+    <meta property="og:title" content="Flappy Angry Bird | Play in Browser">
+    <meta property="og:description" content="Arcade flapper featuring custom Angry Bird physics, dynamic obstacle scaling, procedural 8-bit audio, and instant web play.">
+    <meta property="og:type" content="website">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='14' fill='%23E03030' stroke='%23000' stroke-width='2'/><circle cx='16' cy='22' r='8' fill='%23E6C8A0'/><circle cx='13' cy='12' r='4' fill='%23FFF' stroke='%23000' stroke-width='1.5'/><circle cx='21' cy='12' r='4' fill='%23FFF' stroke='%23000' stroke-width='1.5'/><circle cx='14.5' cy='12' r='1.5' fill='%23000'/><circle cx='22.5' cy='12' r='1.5' fill='%23000'/><path d='M10 8 L16 13 L24 8' stroke='%23000' stroke-width='2.5' stroke-linecap='round' fill='none'/><polygon points='16,14 26,17 16,21' fill='%23FFB41E' stroke='%23DC8C0A' stroke-width='1'/></svg>">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="portal-page">
+
+    <!-- Floating Background Clouds -->
+    <div class="cloud-bg" aria-hidden="true">
+        <div class="cloud c1"></div>
+        <div class="cloud c2"></div>
+        <div class="cloud c3"></div>
+        <div class="cloud c4"></div>
+        <div class="cloud c5"></div>
+    </div>
+
+    <!-- Decorative Arcade Pipes -->
+    <div class="pipe-deco pipe-left" aria-hidden="true"></div>
+    <div class="pipe-deco pipe-right" aria-hidden="true"></div>
+
+    <!-- Ground Strip -->
+    <div class="ground-strip" aria-hidden="true"></div>
+
+    <!-- Top Navigation -->
+    <header>
+        <nav class="portal-nav" aria-label="Main Navigation">
+            <a href="/" class="brand-logo" id="nav-brand">
+                <span class="bird-icon" aria-hidden="true"></span>
+                <span>FLAPPY ANGRY BIRD</span>
+            </a>
+
+            <div class="nav-actions">
+                <a href="https://github.com/chopra-yuvraj/flappy-angry-bird" target="_blank" rel="noopener noreferrer" class="nav-btn" id="btn-github">
+                    GitHub
+                </a>
+                <a href="play.html" class="nav-btn primary" id="btn-nav-play">
+                    Play Now
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="portal-main">
+
+        <!-- Hero Card -->
+        <section class="hero-section" id="hero">
+            <div class="hero-badge">
+                <span>HTML5 Canvas & Desktop Engine • 60 FPS</span>
+            </div>
+
+            <h1 class="hero-title">
+                FLAPPY <span class="highlight">ANGRY</span> BIRD
+            </h1>
+
+            <p class="hero-subtitle">
+                The classic arcade flapper reimagined with realistic aerodynamics, procedural 8-bit audio synthesis, dynamic obstacle pacing, and instant web deployment.
+            </p>
+
+            <div class="feature-pills">
+                <span class="pill">Red, Chuck & Bomb</span>
+                <span class="pill">Energy Shields</span>
+                <span class="pill">Bonus Stars</span>
+                <span class="pill">Day / Night Cycle</span>
+                <span class="pill">Web Audio Synth</span>
+                <span class="pill">Vercel Ready</span>
+            </div>
+
+            <div class="cta-group">
+                <a href="play.html" class="btn-play-hero" id="btn-hero-play">
+                    Play in Browser
+                </a>
+                <a href="https://github.com/chopra-yuvraj/flappy-angry-bird/raw/main/releases/FlappyAngryBird.exe" download class="btn-secondary" id="btn-download-exe">
+                    Download .EXE
+                </a>
+            </div>
+        </section>
+
+        <!-- Playable Heroes Showcase -->
+        <section aria-labelledby="heroes-heading" style="width: 100%;">
+            <h2 class="section-title" id="heroes-heading">Playable Characters</h2>
+            <p class="section-desc">Select between three distinct characters on the title screen using Tab or S.</p>
+
+            <div class="features-grid">
+                <div class="feature-card" style="border-top: 3px solid #E03030;">
+                    <div class="feature-tag red-tag">Red</div>
+                    <h3>Classic</h3>
+                    <p>The standard character. Balanced flight dynamics, standard gravity response, and red feather particle effects.</p>
+                </div>
+
+                <div class="feature-card" style="border-top: 3px solid #FFD700;">
+                    <div class="feature-tag yellow-tag">Chuck</div>
+                    <h3>Speedster</h3>
+                    <p>Aerodynamic triangular body with a top crest. Responsive lifting power and agile flight dynamics.</p>
+                </div>
+
+                <div class="feature-card" style="border-top: 3px solid #00E1FF;">
+                    <div class="feature-tag black-tag">Bomb</div>
+                    <h3>Heavy</h3>
+                    <p>Matte black body with an animated head fuse spark and expanded shockwave particles.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Power-Ups & World Features Grid -->
+        <section aria-labelledby="features-heading" style="width: 100%;">
+            <h2 class="section-title" id="features-heading">Mechanics and World</h2>
+            <p class="section-desc">Engineered with custom physics, procedural asset synthesis, and responsive controls.</p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-tag">Defense</div>
+                    <h3>Energy Shield</h3>
+                    <p>Collect cyan shield orbs to surround your character with an energy barrier that absorbs one fatal collision.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-tag">Bonus</div>
+                    <h3>Golden Stars</h3>
+                    <p>Spinning stars spawn in obstacle gaps granting +3 bonus score points and particle effects.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-tag">Visuals</div>
+                    <h3>Day, Sunset & Night</h3>
+                    <p>Sky transitions dynamically from daylight to amber sunset and starry midnight as your score increases.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-tag">Depth</div>
+                    <h3>Parallax Horizon</h3>
+                    <p>Layered distant mountain silhouettes and drifting clouds provide atmospheric visual depth.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-tag">Audio</div>
+                    <h3>Procedural Audio</h3>
+                    <p>Real-time oscillator synthesis produces retro sound effects without external audio file latency.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-tag">System</div>
+                    <h3>High Score Storage</h3>
+                    <p>Personal bests and achievement medals are persisted locally in the browser.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Controls Guide -->
+        <section class="instructions-card" aria-label="Game Controls">
+            <div class="control-item">
+                <span class="key-badge">SPACE / UP / W</span>
+                <div class="control-desc">
+                    <strong>Flap Wings</strong>
+                    <span>Jump and gain altitude</span>
+                </div>
+            </div>
+
+            <div class="control-item">
+                <span class="key-badge">TAB / S</span>
+                <div class="control-desc">
+                    <strong>Cycle Hero</strong>
+                    <span>Red, Chuck, Bomb</span>
+                </div>
+            </div>
+
+            <div class="control-item">
+                <span class="key-badge">P / ESC</span>
+                <div class="control-desc">
+                    <strong>Pause</strong>
+                    <span>Freeze or resume session</span>
+                </div>
+            </div>
+
+            <div class="control-item">
+                <span class="key-badge">R</span>
+                <div class="control-desc">
+                    <strong>Restart</strong>
+                    <span>Quick retry after game over</span>
+                </div>
+            </div>
+
+            <div class="control-item">
+                <span class="key-badge">M</span>
+                <div class="control-desc">
+                    <strong>Mute</strong>
+                    <span>Toggle audio synthesis</span>
+                </div>
+            </div>
+
+            <div class="control-item">
+                <span class="key-badge">TOUCH</span>
+                <div class="control-desc">
+                    <strong>Screen Tap</strong>
+                    <span>Mobile and tablet input</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="portal-footer">
+        <div class="footer-content">
+            <div class="developer-card">
+                Crafted with ❤️ and ☕ by 
+                <a href="https://github.com/chopra-yuvraj" target="_blank" rel="noopener noreferrer" class="developer-link">
+                    Yuvraj Chopra
+                </a>
+            </div>
+            
+            <div style="font-size: 0.85rem; color: var(--white-muted);">
+                B.Tech CSE (VIT Vellore) • B.S. Data Science (IIT Madras)
+            </div>
+
+            <div class="social-links">
+                <a href="https://github.com/chopra-yuvraj" target="_blank" rel="noopener noreferrer" class="social-badge">
+                    GitHub
+                </a>
+                <a href="https://www.linkedin.com/in/chopra-yuvraj" target="_blank" rel="noopener noreferrer" class="social-badge">
+                    LinkedIn
+                </a>
+                <a href="mailto:yuvrajchopra19@gmail.com" class="social-badge">
+                    Contact
+                </a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

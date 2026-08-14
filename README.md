@@ -9,8 +9,10 @@
 ---
 
 ## 🚀 Live Demo & Web Play
-Play Flappy Angry Bird directly in your browser with zero installations, 60 FPS Canvas rendering, and procedural 8-bit audio:
+Play Flappy Angry Bird directly in your browser with zero installations, 60 FPS Canvas rendering, multi-hero skins, power-ups, and procedural 8-bit audio:
 - **Instant Vercel Deployment**: Push to GitHub and deploy straight to Vercel with zero configuration required!
+- **Play in Browser**: Open `website/index.html` or visit the hosted web arcade portal to play instantly.
+- **Standalone Windows Executable**: Download [`releases/FlappyAngryBird.exe`](releases/FlappyAngryBird.exe) for offline desktop play.
 
 ---
 
@@ -18,45 +20,53 @@ Play Flappy Angry Bird directly in your browser with zero installations, 60 FPS 
 As a **B.Tech CSE student at VIT** and **B.S. Data Science student at IIT Madras**, I wanted to explore the intersection of classical desktop game development and high-performance, modern web deployment.
 
 This project delivers dual runtime targets:
-1. **Desktop Native**: Powered by Python 3 and Pygame CE (`game/main.py` and Windows `.exe`).
-2. **Web Portal & Arcade Engine**: Built with pure HTML5 Canvas, Web Audio API, and CSS3 for zero-latency, cross-platform browser play on any device.
+1. **Desktop Native**: Powered by Python 3 and Pygame CE (`game/main.py` and Windows `releases/FlappyAngryBird.exe`).
+2. **Web Portal & Arcade Engine**: Built with pure HTML5 Canvas, Web Audio API, and CSS3 for zero-latency, cross-platform browser play on any device (`website/`).
 
 ### Key Features
-- **Iconic Character Design** - Features a custom, programmatically drawn "Red Angry Bird" with dynamic rotation physics.
-- **Physics-Based Gameplay** - Realistic gravity, velocity, and collision detection systems for authentic arcade feel.
-- **Cross-Platform Web Play** - Runs directly in the browser at 60 FPS on desktop, tablet, and mobile.
-- **Procedural 8-Bit Audio** - Real-time Web Audio API synthesizer for jump flaps, score chimes, crash shockwaves, and victory fanfares without external audio file latency.
-- **Responsive Controls** - Intelligent input handling supporting Keyboard (`SPACE`, `W`, `↑`), Pause (`P`), Mute (`M`), Restart (`R`), and Touch (`TAP`) for mobile devices.
-- **Dynamic Environment** - Moving clouds, parallax scrolling ground, and randomized progressive pipe generation.
-- **Deployment Ready** - Fully configured with `vercel.json` for edge static hosting and Flask (`website/app.py`) for Python server hosting.
+- **3 Playable Character Heroes** - Switch between **Red** (balanced flight dynamics and red feather bursts), **Chuck** (aerodynamic yellow speedster with swift lift), and **Bomb** (heavy black bird with an animated fuse spark).
+- **Collectibles & Power-Ups** - Collect glowing **Energy Shields** that absorb fatal collisions to save your run, and **Golden Stars** granting +3 bonus score points.
+- **Dynamic Atmosphere & Parallax Depth** - Sky transitions seamlessly from bright cyan daylight to amber sunset and starry midnight, backed by rolling parallax mountain horizons.
+- **Procedural 8-Bit Audio** - Real-time synthesized audio engine generating flap sounds, point dings, star chimes, shield energy hums, shatter shockwaves, and game-over fanfares with zero external audio file latency.
+- **Physics-Based Gameplay** - Realistic gravity, dynamic angular velocity rotation (+30° jump to -70° dive), progressive obstacle speed scaling, and precise collision detection.
+- **Cross-Platform Responsive Controls** - Keyboard (`SPACE`, `W`, `↑`), Character Swap (`TAB`, `S`), Pause (`P`), Mute (`M`), Restart (`R`), and Touch (`TAP`) for mobile and tablet devices.
+- **High Scores & Medal Achievements** - Local score persistence with Bronze, Silver, Gold, Platinum, and Diamond Legend milestones.
+- **Clean Architecture & Deployment Ready** - Consolidated `website/` directory with `vercel.json` for edge static hosting and Flask (`website/app.py`) for Python server hosting.
 
 ---
 
 ### Game Interaction
 | Feature | Action | Experience |
 |---------|--------|------------|
-| **Start Game** | Press `SPACE`, `W`, `↑` or Tap | The bird leaps into action, activating gravity and physics immediately |
-| **Flight Control** | Press `SPACE` or Tap Screen | The bird flaps upwards with an angular rotation animation mimicking flight |
+| **Start Game** | Press `SPACE`, `W`, `↑` or Tap | The bird leaps into flight, activating gravity, aerodynamics, and obstacle generation |
+| **Flight Control** | Press `SPACE` or Tap Screen | The bird flaps upwards with angular rotation and skin-tailored particle bursts |
+| **Switch Character** | Press `TAB`, `S` or Tap Hero Box | Cycles between **Red ⇄ Chuck ⇄ Bomb** with distinct visuals and physics |
+| **Shield Protection** | Collect Cyan Orb | Wraps character in an energy bubble that absorbs 1 fatal pipe or ground crash |
+| **Bonus Star** | Collect Spinning Star | Awards +3 bonus score points accompanied by a starburst particle effect |
 | **Pause / Resume** | Press `P` or `ESC` | Freezes the game session in place |
-| **Mute / Unmute** | Press `M` or click 🔊 | Toggles procedural sound effects |
+| **Mute / Unmute** | Press `M` or click Audio button | Toggles procedural sound effects on the fly |
 | **Quick Restart** | Press `R` or Tap after death | Instantly resets the game state for rapid replayability |
 
 ---
 
 ### Engineering Highlights
-- **Core Native Engine**: Built on **Python 3** and **Pygame Community Edition** for robust game loops and rendering (`game/main.py`).
-- **Web Engine**: Pure **HTML5 Canvas 2D** with High-DPI Retina scaling and **Web Audio API** oscillator sound synthesis.
-- **Styling & UI**: Modern glassmorphism design system using pure CSS3 and Outfit typography.
-- **Vercel Edge Ready**: Static configuration with clean URL routing and HTTP caching headers.
+- **Core Native Engine**: Built on **Python 3** and **Pygame Community Edition** with procedural wave sound synthesis via NumPy (`game/main.py`).
+- **Compiled Desktop Executable**: Standalone single-file Windows binary in [`releases/FlappyAngryBird.exe`](releases/FlappyAngryBird.exe).
+- **Web Engine**: Pure **HTML5 Canvas 2D** with High-DPI Retina scaling and **Web Audio API** oscillator sound synthesis (`website/js/game.js`).
+- **Styling & UI**: Modern glassmorphism design system using pure CSS3 and Outfit typography (`website/css/style.css`).
+- **Vercel Edge Ready**: Static configuration with clean URL routing and HTTP caching headers (`vercel.json`).
 
 ---
+
 ## Future Enhancements
 Ideas for the next version:
+- [x] **Power-ups** - Energy Shield protection and Golden Star bonus collectibles
+- [x] **Character Selectors** - Playable Red, Chuck, and Bomb heroes with dedicated visual FX
+- [x] **Dynamic Day / Night Cycles** - Progressive sky lighting transitions and parallax mountain horizon
+- [x] **Sound Effects** - Zero-dependency procedural 8-bit audio synthesizer
+- [x] **Difficulty Scaling** - Progressive pipe velocity and obstacle pacing
 - [ ] **Leaderboard System** - Global high scores using a lightweight cloud database
-- [ ] **Power-ups** - Shield or speed boost collectibles
-- [ ] **Difficulty scaling** - Pipes moving faster as score increases
-- [ ] **Skin Store** - Unlockable birds (Blue, Yellow) based on score milestones
-- [ ] **Sound Effects** - 8-bit retro audio integration
+- [ ] **Multiplayer Race Mode** - Real-time two-player split-screen challenge
 
 ---
 

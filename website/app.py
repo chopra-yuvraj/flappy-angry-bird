@@ -1,19 +1,25 @@
 import os
-from flask import Flask, render_template
+from flask import Flask, send_from_directory
 
-app = Flask(__name__, static_folder='static', static_url_path='/static')
+app = Flask(__name__, static_folder='.', static_url_path='')
 
 
 @app.route('/')
 def index():
-    """Landing page."""
-    return render_template('index.html')
+    """Serve landing page."""
+    return send_from_directory('.', 'index.html')
 
 
 @app.route('/play')
 def play():
-    """Game page — JS canvas game, no iframe or WASM."""
-    return render_template('play.html')
+    """Serve game arcade page."""
+    return send_from_directory('.', 'play.html')
+
+
+@app.route('/<path:path>')
+def static_proxy(path):
+    """Serve static assets."""
+    return send_from_directory('.', path)
 
 
 if __name__ == '__main__':

@@ -3,8 +3,13 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/", "destination": "/index.html" },
-    { "source": "/play", "destination": "/play.html" }
+    { "source": "/", "destination": "/website/index.html" },
+    { "source": "/play", "destination": "/website/play.html" },
+    { "source": "/css/:match*", "destination": "/website/css/:match*" },
+    { "source": "/js/:match*", "destination": "/website/js/:match*" },
+    { "source": "/static/:match*", "destination": "/website/static/:match*" },
+    { "source": "/releases/:match*", "destination": "/releases/:match*" },
+    { "source": "/:match*", "destination": "/website/:match*" }
   ],
   "headers": [
     {
@@ -16,7 +21,7 @@
       ]
     },
     {
-      "source": "/(css|js)/(.*)",
+      "source": "/website/(css|js|static)/(.*)",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
       ]
